@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'"
   },
-  "author": "Sofiane",
+  "engines": {
+    "node": "6.2.2"
+  },
+  "author": "Sofiane SA",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
