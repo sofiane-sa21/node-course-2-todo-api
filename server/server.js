@@ -1,4 +1,4 @@
-require('./config/config');
+require('./../config/config');
 
 const _ = require('lodash');
 const express = require('express');
@@ -106,6 +106,20 @@ app.patch('/todos/:id', (req, res) => {
         res.send({todo});
     }).catch((err) => {
         res.status(400).send();
+    });
+});
+
+app.post('/users', (req, res) => {
+    var body = _.pick(req.body, ['email', 'password']);
+    var user = new User(body);
+
+    user.save().then(() => {
+        return user.generateAuthToken();
+        // res.send(doc);
+    }).then((token) => {
+        res.header('x-auth', token).send(user);
+    }).catch((err) => {
+        res.status(400).send(err);
     });
 });
 
